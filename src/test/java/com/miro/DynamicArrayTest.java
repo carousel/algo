@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DynamicArrayTest {
+public class DynamicArrayTest {
 
     @Test
     void isEmpty() {
@@ -70,5 +70,37 @@ class DynamicArrayTest {
         carsArray.update(1, car);
         assertEquals(3, carsArray.size());
         assertEquals("Jaguar", carsArray.get(1).getBrand());
+    }
+
+    @Test
+    void clear() {
+        Car[] cars = {Car.create("WW"), Car.create("Audi"), Car.create("BMW")};
+        int size = cars.length;
+        DynamicArray<Car> carsArray = new DynamicArray<>(size, cars);
+        assertEquals(carsArray.size(), 3);
+        carsArray.clear();
+        assertEquals(carsArray.size(), 0);
+    }
+
+    @Test
+    void contains() {
+        Car ww = Car.create("WW");
+        Car audi = Car.create("Audi");
+        Car[] cars = {ww};
+        int size = cars.length;
+        DynamicArray<Car> carsArray = new DynamicArray<>(size, cars);
+        assertTrue(carsArray.contains(ww));
+        assertFalse(carsArray.contains(audi));
+    }
+
+    @Test
+    void add() {
+        Car[] cars = {Car.create("WW")};
+        int size = cars.length;
+        DynamicArray<Car> carsArray = new DynamicArray(size, cars);
+        assertEquals(carsArray.size(), 1);
+        Car car = Car.create("WW");
+        carsArray.add(car);
+        assertEquals(carsArray.size(), 2);
     }
 }

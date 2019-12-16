@@ -8,4 +8,8 @@ public interface ArrayInterface<T> {
     public T get(int index);
 
     public void update(int index, T elem);
+
+    public void clear();
+
+    public boolean contains(T o);
 }

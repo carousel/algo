@@ -3,6 +3,7 @@ package com.miro;
 public class DynamicArray<T> implements DynamicArrayInterface<T> {
 
     private static final Integer ZERO = 0;
+    private static final Integer ONE = 1;
     private T[] data;
 
     public DynamicArray(int size, T[] input) {
@@ -31,10 +32,8 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
                 newArray[size() + k] = input[k];
                 k++;
             }
-
             this.data = newArray;
         }
-
     }
 
     @Override
@@ -74,5 +73,36 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         } else {
             data[index] = elem;
         }
+    }
+
+    @Override
+    public void clear() {
+        this.data = (T[]) new Object[0];
+    }
+
+    @Override
+    public boolean contains(T o) {
+        for (T d : data) {
+            if (o == d) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void add(T o) {
+        if (size().equals(-1)) {
+            this.data = (T[]) new Object[1];
+        } else {
+            int newSize = size() + ONE;
+            T[] newArray = (T[]) new Object[newSize];
+            for (int i = 0; i < size(); i++) {
+                newArray[i] = this.data[i];
+            }
+            newArray[newSize - ONE] = o;
+            this.data = newArray;
+        }
+
     }
 }

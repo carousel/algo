@@ -23,7 +23,7 @@ public class Array<T> implements ArrayInterface<T> {
     }
 
     @Override
-    public T get(int index){
+    public T get(int index) {
         if (!isEmpty()) {
             return data[index];
         } else {
@@ -42,5 +42,20 @@ public class Array<T> implements ArrayInterface<T> {
         } else {
             data[index] = elem;
         }
+    }
+
+    @Override
+    public void clear() {
+        this.data = (T[]) new Object[0];
+    }
+
+    @Override
+    public boolean contains(T o) {
+        for (T d : data) {
+            if (o == d) {
+                return true;
+            }
+        }
+        return false;
     }
 }
