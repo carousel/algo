@@ -48,9 +48,9 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
     }
 
     @Override
-    public T get(int index) throws IndexOutOfBoundsException {
+    public T get(int index) {
         if (!isEmpty()) {
-            return (T) this.data[index];
+            return this.data[index];
         } else {
             throw new IndexOutOfBoundsException("Array is empty");
         }
@@ -68,7 +68,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
      * @throws IndexOutOfBoundsException
      */
     @Override
-    public void update(int index, T elem) throws IndexOutOfBoundsException {
+    public void update(int index, T elem) {
         if (index > data.length + 1) {
             throw new IndexOutOfBoundsException("index is greater then size");
         } else {

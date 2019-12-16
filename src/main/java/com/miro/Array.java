@@ -23,9 +23,9 @@ public class Array<T> implements ArrayInterface<T> {
     }
 
     @Override
-    public T get(int index) throws IndexOutOfBoundsException {
+    public T get(int index){
         if (!isEmpty()) {
-            return (T) data[index];
+            return data[index];
         } else {
             throw new IndexOutOfBoundsException("Array is empty");
         }
@@ -36,7 +36,7 @@ public class Array<T> implements ArrayInterface<T> {
     }
 
     @Override
-    public void update(int index, T elem) throws IndexOutOfBoundsException {
+    public void update(int index, T elem) {
         if (index > data.length + 1) {
             throw new IndexOutOfBoundsException("index is greater then size");
         } else {
