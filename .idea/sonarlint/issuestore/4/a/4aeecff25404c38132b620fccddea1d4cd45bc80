@@ -1,5 +1,0 @@
-
-«%squid:RedundantThrowsDeclarationCheck"nRemove the declaration of thrown exception 'java.lang.IndexOutOfBoundsException' which is a runtime exception.(Ô•È«ûÿÿÿÿ8˜£éðð-
-Ysquid:UselessImportCheck".Remove this unused import 'java.util.Objects'.(¼¸õ›8˜£éðð-
-Gsquid:S1905"$Remove this unnecessary cast to "T".(šŽÛÊúÿÿÿÿ8˜£éðð-
-¦%squid:RedundantThrowsDeclarationCheck"nRemove the declaration of thrown exception 'java.lang.IndexOutOfBoundsException' which is a runtime exception.(ÆëŠ—8˜£éðð-
