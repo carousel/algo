@@ -23,8 +23,7 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
      * @param input
      */
     public void merge(T[] input) {
-
-        int newSize = size() + input.length;
+        int newSize = newSize(size(), input.length);
         T[] newArray = (T[]) new Object[newSize];
         for (int i = 0; i < size(); i++) {
             newArray[i] = this.data[i];
@@ -33,7 +32,16 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
             newArray[size() + j] = input[j];
         }
         this.data = newArray;
+    }
 
+    private Integer newSize(Integer currentSize, Integer inputSize) {
+        if (currentSize > inputSize) {
+            return currentSize * 2;
+        } else if (currentSize < inputSize) {
+            return (inputSize % currentSize == 0) ? (currentSize + inputSize) : (currentSize + inputSize + 1);
+        } else {
+            return currentSize + inputSize;
+        }
     }
 
     /**
@@ -117,7 +125,6 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         }
         return false;
     }
-
 
     /**
      * O(n)

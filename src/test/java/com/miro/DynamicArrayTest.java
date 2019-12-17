@@ -29,8 +29,11 @@ public class DynamicArrayTest {
         DynamicArray<Car> carsArray = new DynamicArray(size, cars);
         Car[] newCars = {Car.create("Suzuki"), Car.create("Volvo")};
         carsArray.merge(newCars);
+        Car toyota = Car.create("Toyota");
+        carsArray.append(toyota);
         assertFalse(carsArray.isEmpty());
         assertEquals("Volvo", carsArray.get(2).getBrand());
+        assertEquals(4, carsArray.size());
 
     }
 
