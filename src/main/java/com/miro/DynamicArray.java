@@ -13,27 +13,59 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         }
     }
 
+    private void init(int index, T elem) {
+        data[index] = elem;
+    }
+
     /**
-     * this method is adding new elements to existing array by coping from both arrays into new one
+     * this method is adding new elements to existing array by coping from both arrays into new one (dynamic array)
      *
      * @param input
      */
-    public void append(T[] input) {
-        if (size().equals(-1)) {
-            this.data = (T[]) new Object[input.length];
-        } else {
-            int newSize = size() + input.length;
-            T[] newArray = (T[]) new Object[newSize];
-            for (int i = 0; i < size(); i++) {
-                newArray[i] = this.data[i];
-            }
-            int k = 0;
-            while (k < input.length) {
-                newArray[size() + k] = input[k];
-                k++;
-            }
-            this.data = newArray;
+    public void merge(T[] input) {
+
+        int newSize = size() + input.length;
+        T[] newArray = (T[]) new Object[newSize];
+        for (int i = 0; i < size(); i++) {
+            newArray[i] = this.data[i];
         }
+        for (int j = 0; j < input.length; j++) {
+            newArray[size() + j] = input[j];
+        }
+        this.data = newArray;
+
+    }
+
+    /**
+     * add new element to the end of the list/resize array
+     *
+     * @param o
+     */
+    @Override
+    public void append(T o) {
+        int newSize = size() + ONE;
+        T[] newArray = (T[]) new Object[newSize];
+        for (int i = 0; i < size(); i++) {
+            newArray[i] = this.data[i];
+        }
+        newArray[newSize - ONE] = o;
+        this.data = newArray;
+    }
+
+    /**
+     * add new element at the beginning of the list/resize array
+     *
+     * @param o
+     */
+    @Override
+    public void prepend(T o) {
+        int newSize = size() + ONE;
+        T[] newArray = (T[]) new Object[newSize];
+        newArray[0] = o;
+        for (int i = 1; i < size(); i++) {
+            newArray[i] = this.data[i];
+        }
+        this.data = newArray;
     }
 
     @Override
@@ -55,12 +87,8 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         }
     }
 
-    private void init(int index, T elem) {
-        data[index] = elem;
-    }
-
     /**
-     * update one element in the array
+     * update one element in the array, replace existing value
      *
      * @param index
      * @param elem
@@ -90,19 +118,18 @@ public class DynamicArray<T> implements DynamicArrayInterface<T> {
         return false;
     }
 
-    @Override
-    public void add(T o) {
-        if (size().equals(-1)) {
-            this.data = (T[]) new Object[1];
-        } else {
-            int newSize = size() + ONE;
-            T[] newArray = (T[]) new Object[newSize];
-            for (int i = 0; i < size(); i++) {
-                newArray[i] = this.data[i];
-            }
-            newArray[newSize - ONE] = o;
-            this.data = newArray;
-        }
 
+    /**
+     * O(n)
+     */
+    public T linearSearch(T o) {
+        if (!isEmpty()) {
+            for (T d : data) {
+                if (o == d) {
+                    return o;
+                }
+            }
+        }
+        return null;
     }
 }

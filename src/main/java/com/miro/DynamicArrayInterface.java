@@ -9,9 +9,11 @@ public interface DynamicArrayInterface<T> {
 
     public void update(int index, T elem);
 
-    public void append(T[] input);
+    public void merge(T[] input);
 
-    public void add(T o);
+    public void append(T o);
+
+    public void prepend(T o);
 
     public void clear();
 

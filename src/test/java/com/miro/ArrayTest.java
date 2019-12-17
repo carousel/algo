@@ -53,4 +53,15 @@ public class ArrayTest {
         assertTrue(carsArray.contains(ww));
         assertFalse(carsArray.contains(audi));
     }
+
+    @Test
+    void linearSearch() {
+        Car[] cars = {Car.create("WW"), Car.create("Audi"), Car.create("BMW"), Car.create("Toyota")};
+        Car Honda = Car.create("Honda");
+        Car WW = cars[0];
+        int size = cars.length;
+        Array<Car> carsArray = new Array(size, cars);
+        assertEquals(WW, carsArray.linearSearch(cars[0]));
+        assertNull(carsArray.linearSearch(Honda));
+    }
 }

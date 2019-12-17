@@ -58,4 +58,18 @@ public class Array<T> implements ArrayInterface<T> {
         }
         return false;
     }
+
+    /**
+     * O(n)
+     */
+    public T linearSearch(T o) {
+        if (!isEmpty()) {
+            for (T d : data) {
+                if (o == d) {
+                    return o;
+                }
+            }
+        }
+        return null;
+    }
 }

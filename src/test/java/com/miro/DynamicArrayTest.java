@@ -23,15 +23,39 @@ public class DynamicArrayTest {
     }
 
     @Test
-    void append() {
+    void merge() {
         Car[] cars = {Car.create("WW")};
         int size = cars.length;
         DynamicArray<Car> carsArray = new DynamicArray(size, cars);
         Car[] newCars = {Car.create("Suzuki"), Car.create("Volvo")};
-        carsArray.append(newCars);
+        carsArray.merge(newCars);
         assertFalse(carsArray.isEmpty());
         assertEquals("Volvo", carsArray.get(2).getBrand());
 
+    }
+
+    @Test
+    void append() {
+        Car[] cars = {Car.create("WW")};
+        int size = cars.length;
+        DynamicArray<Car> carsArray = new DynamicArray(size, cars);
+        assertEquals(carsArray.size(), 1);
+        Car car = Car.create("Toyota");
+        carsArray.append(car);
+        assertEquals(carsArray.size(), 2);
+        assertEquals("WW", carsArray.get(0).getBrand());
+    }
+
+    @Test
+    void prepend() {
+        Car[] cars = {Car.create("WW")};
+        int size = cars.length;
+        DynamicArray<Car> carsArray = new DynamicArray(size, cars);
+        assertEquals(carsArray.size(), 1);
+        Car WW = Car.create("Toyota");
+        carsArray.prepend(WW);
+        assertEquals(carsArray.size(), 2);
+        assertEquals("Toyota", carsArray.get(0).getBrand());
     }
 
     @Test
@@ -40,7 +64,7 @@ public class DynamicArrayTest {
         int size = cars.length;
         DynamicArray<Car> carsArray = new DynamicArray(size, cars);
         Car[] newCars = {Car.create("Suzuki"), Car.create("Volvo")};
-        carsArray.append(newCars);
+        carsArray.merge(newCars);
         assertEquals(3, carsArray.size());
     }
 
@@ -51,7 +75,7 @@ public class DynamicArrayTest {
         DynamicArray<Car> carsArray = new DynamicArray(size, cars);
         assertEquals(1, carsArray.size());
         Car[] newCars = {Car.create("Suzuki"), Car.create("Volvo")};
-        carsArray.append(newCars);
+        carsArray.merge(newCars);
         assertFalse(carsArray.isEmpty());
         assertEquals("WW", carsArray.get(0).getBrand());
         assertEquals("Suzuki", carsArray.get(1).getBrand());
@@ -65,7 +89,7 @@ public class DynamicArrayTest {
         int size = cars.length;
         DynamicArray<Car> carsArray = new DynamicArray(size, cars);
         Car[] newCars = {Car.create("Suzuki"), Car.create("Volvo")};
-        carsArray.append(newCars);
+        carsArray.merge(newCars);
         Car car = Car.create("Jaguar");
         carsArray.update(1, car);
         assertEquals(3, carsArray.size());
@@ -94,13 +118,13 @@ public class DynamicArrayTest {
     }
 
     @Test
-    void add() {
-        Car[] cars = {Car.create("WW")};
+    void linearSearch() {
+        Car[] cars = {Car.create("WW"), Car.create("Audi"), Car.create("BMW"), Car.create("Toyota")};
+        Car Honda = Car.create("Honda");
+        Car WW = cars[0];
         int size = cars.length;
-        DynamicArray<Car> carsArray = new DynamicArray(size, cars);
-        assertEquals(carsArray.size(), 1);
-        Car car = Car.create("WW");
-        carsArray.add(car);
-        assertEquals(carsArray.size(), 2);
+        DynamicArray<Car> carsArray = new DynamicArray<>(size, cars);
+        assertEquals(WW, carsArray.linearSearch(cars[0]));
+        assertNull(carsArray.linearSearch(Honda));
     }
 }
